@@ -1,0 +1,97 @@
+﻿@model IEnumerable<IPM.Models.Module>
+
+@{
+    ViewBag.Title = "Module Management";
+}
+
+
+<h3 class="page-header"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Module Management</h3>
+
+
+<p>
+    <a href="/Modules/Create" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a>
+    @*@Html.ActionLink("<span class=\"glyphicon glyphicon-th-large\" aria-hidden=\"true\"></span> Create New", "Create", null, new { @class = "btn btn-primary", role = "button" })*@
+</p>
+<table class="table table-bordered table-hover table-condensed table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ModuleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModuleType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Controller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.ModuleId" ondblclick="openModule(this)" onclick="selectRow(this)">
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ModuleId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId })
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        function openModule(obj) {
+            var id = $(obj).attr("id");
+            alert(id);
+        }
+        function selectRow(obj) {
+            $(obj).parent().find("tr").removeClass("success");
+            $(obj).addClass("success");
+        }
+    </script>
+}

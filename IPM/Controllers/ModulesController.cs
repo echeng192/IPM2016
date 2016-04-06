@@ -51,7 +51,6 @@ namespace IPM.Controllers
         {
             if (ModelState.IsValid)
             {
-                module.ModuleId = Guid.NewGuid().ToString();
                 db.Modules.Add(module);
                 db.SaveChanges();
                 return RedirectToAction("Index");
