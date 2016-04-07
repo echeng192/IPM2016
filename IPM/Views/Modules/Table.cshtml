@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Module Management";
+}
+
+
+<h3 class="page-header"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Module Management</h3>
+
+
+<p>
+    <a href="/Modules/Create" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a>
+    @*@Html.ActionLink("<span class=\"glyphicon glyphicon-th-large\" aria-hidden=\"true\"></span> Create New", "Create", null, new { @class = "btn btn-primary", role = "button" })*@
+</p>
+<table id="tbData"></table>
+@section Scripts {
+    <script type="text/javascript" src="~/Content/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tbData").bootstrapTable({
+                url: '/Modules/GetData',
+                method: 'get',
+                pagination: true,
+                //queryParams: oTableInit.queryParams,
+                columns: [
+                    {
+                        checkbox: true
+                    }, {
+                        field: 'ModuleName',
+                        title: 'ModuleName1'
+                    }, {
+                        field: 'CreatedBy',
+                        title: 'CreatedBy1'
+                    }
+                ],
+
+            });
+            //var oTable = new TableInit();
+            //oTable.Init();
+        });
+        var TableInit = function () {
+            var oTableInit = new object();
+            oTableInit.Init = function () {
+                $("#tbData").bootstrapTable({
+                    url: '/Modules/GetData',
+                    method: 'get',
+                    pagination: true,
+                    //queryParams: oTableInit.queryParams,
+                    columns: [
+                        {
+                            checkbox: true
+                        }, {
+                            field: 'ModuleName',
+                            title: 'ModuleName1'
+                        }, {
+                            field: 'CreatedBy',
+                            title: 'CreatedBy1'
+                        },
+                    ],
+
+                });
+            };
+
+            oTableInit.queryParams = function (params) {
+                var temp = {
+                    limit: params.limit,
+                    offset: params.offset
+                };
+                return temp;
+            };
+
+            return oTableInit;
+        };
+
+    </script>
+}
+@section styles {
+    <link href="~/Content/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+}

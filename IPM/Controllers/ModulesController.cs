@@ -20,6 +20,21 @@ namespace IPM.Controllers
         {
             return View(db.Modules.ToList());
         }
+        // GET: Modules
+        public ActionResult Table()
+        {
+            return View(db.Modules.ToList());
+        }
+        public JsonResult  GetData()
+        {
+            int offset = 1;
+            int limit = 1;
+            var list = db.Modules.ToList().Select(t => new { t.ModuleName, t.CreatedBy });
+           
+            var rows = list.Skip(offset).Take(limit).ToList();
+            var total = rows.Count;
+            return Json(new {total = total,rows=rows}, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Modules/Details/5
         public ActionResult Details(string id)
