@@ -25,15 +25,19 @@ namespace IPM.Controllers
         {
             return View(db.Modules.ToList());
         }
-        public JsonResult  GetData()
+        public JsonResult GetData(int limit, int offset)
         {
-            int offset = 1;
-            int limit = 1;
-            var list = db.Modules.ToList().Select(t => new { t.ModuleName, t.CreatedBy });
+            //int offset = 1;
+            //int limit = 1;
+            //var list = db.Modules.ToList().Select(t => new { t.ModuleName, t.CreatedBy });
            
-            var rows = list.Skip(offset).Take(limit).ToList();
-            var total = rows.Count;
-            return Json(new {total = total,rows=rows}, JsonRequestBehavior.AllowGet);
+            //var rows = list.Skip(offset).Take(limit).ToList();
+            //var total = rows.Count;
+            //return Json(new {total = total,rows=rows}, JsonRequestBehavior.AllowGet);
+            var list = db.Modules.ToList();
+            var total = list.Count;
+            list = list.Skip(offset).Take(limit).ToList();
+            return Json(new { total = total,rows = list},JsonRequestBehavior.AllowGet);
         }
 
         // GET: Modules/Details/5
