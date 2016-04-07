@@ -1,34 +1,331 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MES平台</title>
+    <!--Bootstrap-->
+    <link href="/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--[if IE 7]>
+    <link href="/Content/font-awesome/css/font-awesome-ie7.min.css" rel="stylesheet" />
+    <![endif]-->
+    <link href="/Content/sidebar-menu/sidebar-menu.css" rel="stylesheet" />
+    <link href="/Content/ace/css/ace-rtl.min.css" rel="stylesheet" />
+    <link href="/Content/ace/css/ace-skins.min.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.11.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/Scripts/html5shiv.js"></script>
+    <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+        .nav > li > a {
+            padding: 5px 10px;
+        }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        .tab-content {
+            padding-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-default" id="navbar">
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="icon-leaf"></i>
+                        ERP后台管理系统
+                    </small>
+                </a>
+            </div>
+
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <li >
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="/Content/ace/avatars/avatar2.png" alt="Admin's Photo" />
+                            <span class="user-info">
+                                <small>欢迎光临,</small>
+                                @User.Identity.Name
+                            </span>
+
+                            <i class="icon-caret-down"></i>
+                        </a>
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-cog"></i>
+                                    设置
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="icon-user"></i>
+                                    个人资料
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Home/Logout">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="main-container" id="main-container">
+        <div class="main-container-inner">
+            <a class="menu-toggler" id="menu-toggler" href="#">
+                <span class="menu-text"></span>
+            </a>
+            <div class="sidebar" id="sidebar">
+                @*<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                            <button class="btn btn-success">
+                                <i class="icon-signal"></i>
+                            </button>
+                            <button class="btn btn-info">
+                                <i class="icon-pencil"></i>
+                            </button>
+                            <button class="btn btn-warning">
+                                <i class="icon-group"></i>
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="icon-cogs"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                            <span class="btn btn-success"></span>
+                            <span class="btn btn-info"></span>
+                            <span class="btn btn-warning"></span>
+                            <span class="btn btn-danger"></span>
+                        </div>
+                    </div>*@
+                                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+                </div>
+                <ul class="nav nav-list" id="menu"></ul>
+
+            </div>
+            <div class="main-content">
+                @*<div class="breadcrumbs" id="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="icon-home home-icon"></i>
+                                <a href="javascript:test()">首页</a>
+                            </li>
+                            <li class="active">权限管理</li>
+                        </ul>
+                        <div class="nav-search" id="nav-search">
+                            <form class="form-search">
+                                <span class="input-icon">
+                                    <input type="text" placeholder="搜索 ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                                    <i class="icon-search nav-search-icon"></i>
+                                </span>
+                            </form>
+                        </div>
+                    </div>*@
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-xs-12" style="padding-left:5px;">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active"><a href="#Index" role="tab" data-toggle="tab">首页</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="Index">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ace-settings-container" id="ace-settings-container">
+                <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                    <i class="icon-cog bigger-150"></i>
+                </div>
+                <div class="ace-settings-box" id="ace-settings-box">
+                    <div>
+                        <div class="pull-left">
+                            <select id="skin-colorpicker" >
+                                <option data-skin="default" value="#438EB9">清新</option>
+                                <option data-skin="skin-1" value="#222A2D">稳重</option>
+                                <option data-skin="skin-2" value="#C6487E">亮丽</option>
+                                <option data-skin="skin-3" value="#D0D0D0">庄严</option>
+                            </select>
+                        </div>
+                        <span>&nbsp; 选择皮肤</span>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
+                        <label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
+                        <label class="lbl" for="ace-settings-sidebar"> 固定滑动条</label>
+                    </div>
+ @*                   <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
+                        <label class="lbl" for="ace-settings-breadcrumbs">固定面包屑</label>
+                    </div>*@
+
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
+                        <label class="lbl" for="ace-settings-rtl">切换到左边</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
+                        <label class="lbl" for="ace-settings-add-container">
+                            切换窄屏
+                            <b></b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="icon-double-angle-up icon-only bigger-110"></i>
+        </a>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
-<div class="row">
-    @Html.ActionLink("Test", "Test")
-</div>
+    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Content/sidebar-menu/sidebar-menu.js"></script>
+    <script src="/Content/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="/Content/ace/js/ace-extra.min.js"></script>
+    <script src="/Content/ace/js/ace.min.js"></script>
+    <script type="text/javascript">
+        //toastr.options.positionClass = 'toast-bottom-right';
+        $(function () {
+            $('#menu').sidebarMenu({
+                data: [{
+                    id: '1',
+                    text: '系统设置',
+                    icon: 'icon-cog',
+                    url: '',
+                    menus: [{
+                        id: '11',
+                        text: '模块管理',
+                        icon: 'icon-glass',
+                        url: '/Modules/index'
+                    }]
+                }, {
+                    id: '2',
+                    text: '基础数据',
+                    icon: 'icon-leaf',
+                    url: '',
+                    menus: [{
+                        id: '21',
+                        text: '基础特征',
+                        icon: 'icon-glass',
+                        url: '/BasicData/BasicFeature/Index'
+                    }, {
+                        id: '22',
+                        text: '特征管理',
+                        icon: 'icon-glass',
+                        url: '/BasicData/Features/Index',
+                        menus: [{
+                            id: '221',
+                            text: '编码管理2',
+                            icon: 'icon-glass',
+                            url: '/CodeType/Index'
+                        }]
+                    
+                    }, {
+                        id: '23',
+                        text: '物料维护',
+                        icon: 'icon-glass',
+                        url: '/Model/Index'
+                    }, {
+                        id: '24',
+                        text: '站点管理',
+                        icon: 'icon-glass',
+                        url: '/Station/Index'
+                    }]
+                }, {
+                    id: '3',
+                    text: '权限管理',
+                    icon: 'icon-user',
+                    url: '',
+                    menus: [{
+                        id: '31',
+                        text: '用户管理',
+                        icon: 'icon-user',
+                        url: '/SystemSetting/User'
+                    }, {
+                        id: '32',
+                        text: '角色管理',
+                        icon: 'icon-apple',
+                        url: '/SystemSetting/Role'
+                    }, {
+                        id: '33',
+                        text: '菜单管理',
+                        icon: 'icon-list',
+                        url: '/SystemSetting/Menu'
+                    }, {
+                        id: '34',
+                        text: '部门管理',
+                        icon: 'icon-glass',
+                        url: '/SystemSetting/Department'
+                    }]
+                }, {
+                    id: '4',
+                    text: '订单管理',
+                    icon: 'icon-envelope',
+                    url: '',
+                    menus: [{
+                        id: '41',
+                        text: '订单查询',
+                        icon: 'icon-glass',
+                        url: '/Order/Query'
+                    }, {
+                        id: '42',
+                        text: '订单排产',
+                        icon: 'icon-glass',
+                        url: '/Order/PLANTPRODUCT'
+                    }, {
+                        id: '43',
+                        text: '订单撤排',
+                        icon: 'icon-glass',
+                        url: '/Order/cancelPRODUCT'
+                    }, {
+                        id: '44',
+                        text: '订单HOLD',
+                        icon: 'icon-glass',
+                        url: '/Order/hold'
+                    }, {
+                        id: '45',
+                        text: '订单删除',
+                        icon: 'icon-glass',
+                        url: '/Order/delete'
+                    }, {
+                        id: '47',
+                        text: '订单插单',
+                        icon: 'icon-glass',
+                        url: '/Order/insertorder'
+                    }, {
+                        id: '48',
+                        text: '订单导入',
+                        icon: 'icon-glass',
+                        url: '/Order/Import'
+                    }]
+                }]
+            });
+        });
+    </script>
+
+</body>
+</html>
