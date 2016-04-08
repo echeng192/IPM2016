@@ -22,8 +22,8 @@ namespace IPM.Models
         public int SortOrder { set; get; }
         public string Remark { set; get; }
         public string CreatedBy { set; get; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime  CreatedDate { set; get; }
 
         public virtual ICollection<ModuleAction> Actions { set; get; }

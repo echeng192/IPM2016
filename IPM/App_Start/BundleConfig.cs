@@ -21,11 +21,25 @@ namespace IPM
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Content/bootstrap/js/bootstrap-datetimepicker.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap/css/bootstrap-datetimepicker.min.css",
                       "~/Content/site.css"));
+
+            //bootstrap table js
+            bundles.Add(new ScriptBundle("~/bundles/bootstraptable").Include(
+                      "~/Content/bootstrap-table/bootstrap-table.js",
+                      "~/Content/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"));
+            //bootstrap table css
+            bundles.Add(new StyleBundle("~/Content/bootstraptable").Include(
+                  "~/Content/bootstrap-table/bootstrap-table.min.css"));
+
+            //public js
+            bundles.Add(new ScriptBundle("~/bundles/public").Include(
+                  "~/Scripts/public.js"));
         }
     }
 }
