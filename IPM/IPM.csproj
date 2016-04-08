@@ -606,6 +606,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\treegrid\css\jquery.treegrid.css" />
+    <Content Include="Content\treegrid\img\collapse.png" />
+    <Content Include="Content\treegrid\img\expand.png" />
+    <Content Include="Content\treegrid\img\file.png" />
+    <Content Include="Content\treegrid\img\folder.png" />
+    <Content Include="Content\treegrid\js\jquery.cookie.js" />
+    <Content Include="Content\treegrid\js\jquery.treegrid.bootstrap2.js" />
+    <Content Include="Content\treegrid\js\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Content\treegrid\js\jquery.treegrid.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -829,6 +838,7 @@
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Index.cshtml" />
     <Content Include="Views\Modules\Table.cshtml" />
+    <Content Include="Views\Modules\treegrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

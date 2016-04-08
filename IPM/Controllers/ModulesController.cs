@@ -25,6 +25,10 @@ namespace IPM.Controllers
         {
             return View(db.Modules.ToList());
         }
+        public ActionResult TreeGrid()
+        {
+            return View(db.Modules.ToList());
+        }
         public JsonResult GetData(int limit, int offset,string searchValue,string searchItem)
         {
             //int offset = 1;

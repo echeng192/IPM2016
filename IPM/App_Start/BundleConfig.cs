@@ -40,6 +40,10 @@ namespace IPM
             //public js
             bundles.Add(new ScriptBundle("~/bundles/public").Include(
                   "~/Scripts/public.js"));
+            //treegrid js
+            bundles.Add(new ScriptBundle("~/bundles/treegrid").Include(
+                  "~/Content/treegrid/js/jquery.treegrid.js",
+                  "~/Content/treegrid/js/jquery.treegrid.bootstrap3.js"));
         }
     }
 }

@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Module Management";
+}
+
+
+<h3 class="page-header"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Module Management</h3>
+<div id="toolbar" class="btn-group">
+    <a href="/Modules/Create" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增</a>
+
+    <button id="btn_edit" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+    </button>
+    <button id="btn_delete" type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+    </button>
+</div>
+<div><table class="table tree-2 table-bordered table-striped table-condensed">
+    <tr class="treegrid-1">
+        <td>Root node 1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-2 treegrid-parent-1">
+        <td>Node 1-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-3 treegrid-parent-1">
+        <td>Node 1-2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-4 treegrid-parent-3">
+        <td>Node 1-2-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-5">
+        <td>Root node 2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-6 treegrid-parent-5">
+        <td>Node 2-1</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-7 treegrid-parent-5">
+        <td>Node 2-2</td>
+        <td>Additional info</td>
+    </tr>
+    <tr class="treegrid-8 treegrid-parent-7">
+        <td>Node 2-2-1</td>
+        <td>Additional info</td>
+    </tr>
+</table>	</div>
+<div>
+    <table class="table tree">
+        <tr class="treegrid-1">
+            <td>Root node 1</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-2 treegrid-parent-1">
+            <td>Node 1-1</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-3 treegrid-parent-1">
+            <td>Node 1-2</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-4 treegrid-parent-3">
+            <td>Node 1-2-1</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-5">
+            <td>Root node 2</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-6 treegrid-parent-5">
+            <td>Node 2-1</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-7 treegrid-parent-5">
+            <td>Node 2-2</td>
+            <td>Additional info</td>
+        </tr>
+        <tr class="treegrid-8 treegrid-parent-7">
+            <td>Node 2-2-1</td>
+            <td>Additional info</td>
+        </tr>
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/treegird")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tree').treegrid();
+            $('.tree-2').treegrid({
+                expanderExpandedClass: 'glyphicon glyphicon-minus',
+                expanderCollapsedClass: 'glyphicon glyphicon-plus'
+            });
+
+        });
+
+    </script>
+}
+@section styles {
+
+}
