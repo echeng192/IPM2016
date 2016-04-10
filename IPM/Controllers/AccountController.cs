@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IPM.Models;
+using System.Collections.Generic;
 
 namespace IPM.Controllers
 {
@@ -17,7 +18,88 @@ namespace IPM.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        [AllowAnonymous]
+        public ActionResult UserList()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public JsonResult GetUserList()
+        {    
+            ApplicationDbContext db = new ApplicationDbContext();
+            var Users = db.Users;
+            var model = Users.ToList();
+            return Json(new { total = model.Count, rows = model }, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateUser(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    StaffId = model.StaffId,
+                    NameCN = model.NameCN,
+                    CreatedDate = DateTime.Now
+                };
+                var result = await UserManager.CreateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("UserList", "Account");
+                }
+                AddErrors(result);
+            }
 
+            // 如果我们进行到这一步时某个地方出错，则重新显示表单
+            return View(model);
+        }
+        [AllowAnonymous]
+        public ActionResult RoleList()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public JsonResult GetRoleList()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var list = db.ApplicationRoles.ToList();
+            return Json(new { total = list.Count, rows = list }, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRole(EditRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var identityManger = new IdentityManger();
+                ApplicationRole role = new ApplicationRole();
+                role.Name = model.RoleName;
+                role.Description = model.Description;
+                role.CreatedDate = DateTime.Now;
+                if (identityManger.CreateRole(role))
+                {
+                    return RedirectToAction("RoleList", "Account");
+                }     
+            }
+
+            // 如果我们进行到这一步时某个地方出错，则重新显示表单
+            return View(model);
+        }
         public AccountController()
         {
         }
@@ -421,7 +503,7 @@ namespace IPM.Controllers
             }
 
             base.Dispose(disposing);
-        }
+        }       
 
         #region 帮助程序
         // 用于在添加外部登录名时提供 XSRF 保护

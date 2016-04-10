@@ -24,9 +24,21 @@ textarea {
 }
 
 
-.treegrid-indent {width:16px; height: 16px; display: inline-block; position: relative;}
-
-.treegrid-expander {width:16px; height: 16px; display: inline-block; position: relative; cursor: pointer;}
-
-.treegrid-expander-expanded{background-image: url(treegrid/img/collapse.png); }
-.treegrid-expander-collapsed{background-image: url(treegrid/expand.png);}
+.tab-loading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: 56px;
+    color: #fff;
+    padding-left: 60px;
+    font-size: 15px;
+    background: #000;
+    opacity: 0.7;
+    z-index: 9999;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+}

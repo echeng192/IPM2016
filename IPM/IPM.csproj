@@ -430,6 +430,8 @@
     <Content Include="Content\font-awesome\src\_includes\why.html" />
     <Content Include="Content\font-awesome\src\_layouts\base.html" />
     <Content Include="Content\font-awesome\src\_layouts\icon.html" />
+    <Content Include="Content\images\1352886927_7549.gif" />
+    <Content Include="Content\images\bigloading.gif" />
     <Content Include="Content\jqgrid\css\ui.jqgrid-bootstrap-ui.css" />
     <Content Include="Content\jqgrid\css\ui.jqgrid-bootstrap.css" />
     <Content Include="Content\jqgrid\css\ui.jqgrid.css" />
@@ -606,15 +608,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Content\treegrid\css\jquery.treegrid.css" />
-    <Content Include="Content\treegrid\img\collapse.png" />
-    <Content Include="Content\treegrid\img\expand.png" />
-    <Content Include="Content\treegrid\img\file.png" />
-    <Content Include="Content\treegrid\img\folder.png" />
-    <Content Include="Content\treegrid\js\jquery.cookie.js" />
-    <Content Include="Content\treegrid\js\jquery.treegrid.bootstrap2.js" />
-    <Content Include="Content\treegrid\js\jquery.treegrid.bootstrap3.js" />
-    <Content Include="Content\treegrid\js\jquery.treegrid.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -838,7 +831,10 @@
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Index.cshtml" />
     <Content Include="Views\Modules\Table.cshtml" />
-    <Content Include="Views\Modules\treegrid.cshtml" />
+    <Content Include="Views\Account\UserList.cshtml" />
+    <Content Include="Views\Account\CreateUser.cshtml" />
+    <Content Include="Views\Account\RoleList.cshtml" />
+    <Content Include="Views\Account\CreateRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

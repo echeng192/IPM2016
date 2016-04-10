@@ -26,7 +26,7 @@ namespace IPM.Controllers
 
             return View();
         }
-        public ActionResult Test()
+        public ActionResult Index2()
         {
             ViewBag.Message = "Test.";
 

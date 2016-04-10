@@ -6,7 +6,8 @@ namespace IPM.DAL
 {
     public class IPMContext :DbContext
     {
-        public IPMContext() :base("IPMContext")
+        public IPMContext()
+            : base("DefaultConnection")
         {
 
         }

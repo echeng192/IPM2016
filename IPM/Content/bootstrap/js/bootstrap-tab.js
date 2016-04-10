@@ -20,12 +20,15 @@
         if (options.content) {
             content = '<div role="tabpanel" class="tab-pane" id="' + id + '">' + options.content + '</div>';
         } else {//没有内容，使用IFRAME打开链接
-            content = '<div role="tabpanel" class="tab-pane" id="' + id + '"><iframe src="' + options.url + '" width="100%" height="' + mainHeight +
+            content = '<div role="tabpanel" class="tab-pane" id="' + id + '"><div class="tab-loading alert alert-info" role="alert"><h4><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Loading......<h4></div><iframe src="' + options.url + '" width="100%" height="' + mainHeight +
                     '" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes" allowtransparency="yes"></iframe></div>';
         }
         //加入TABS
         $(".nav-tabs").append(title);
         $(".tab-content").append(content);
+        $("#" + id).find('iframe').bind('load',function () {
+            $(".tab-loading").hide();
+        });
     }
     //激活TAB
     $("#" + id).addClass("active");
@@ -66,8 +69,6 @@ var closeAllTab = function () {
 
             $(t).addClass('active');
             //$("#Index").addClass('active');
-     
-
         }
     });
 }
@@ -95,10 +96,6 @@ $(function () {
         id = $(this).attr("tabclose");
         closeTab(id);
     });
-
-    //$(".nav-tabs").on("mouseover", "[tabAllClose]", function (e) {
-
-    //});
     $(".nav-tabs").on("contextmenu", function (event) {
         if ($("#tabs_contextMenu").length == 0) {
             var menuText = '<ul class="dropdown-menu" id="tabs_contextMenu"><li><a href="javascript:closeActiveTab();">关闭当前</a>	<a href="javascript:closeOtherTab();">关闭其它</a> </li><li> <a href="javascript:closeAllTab();">关闭所有</a></li></ul>';

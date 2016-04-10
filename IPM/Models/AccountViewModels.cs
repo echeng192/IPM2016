@@ -109,4 +109,24 @@ namespace IPM.Models
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
     }
+
+    public class EditUserViewModel
+    {
+        public string Id { get; set; }
+        [Required]
+        public string UserName { set; get; }
+        public string NameCN { set; get; }
+        [EmailAddress]
+        [Display(Name = "电子邮件")]
+        public string Email { get; set; }
+        public string StaffId { get; set; }
+    }
+    public class EditRoleViewModel
+    {
+        public string Id { get; set; }
+        [Required]
+        public string RoleName { set; get; }
+        public string Description { set; get; }
+        public string CreatedBy { set; get; }
+    }
 }
